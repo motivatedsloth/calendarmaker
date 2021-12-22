@@ -1,0 +1,190 @@
+/**
+ * controller for calendars
+ *
+ * TOC 
+ * layout
+ * typography
+ * cursors and actions
+ * colors and borders
+ *
+ */
+/* layout */
+.calendar-controls{
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr min-content;
+    margin-bottom: .5em;
+}
+
+.control-month, .control-week{
+    grid-template-areas: 'prev month year next';
+}
+
+.control-year{
+    grid-template-areas: 'prev year year next';
+}
+
+.control-week{
+    grid-template-areas: 'prev week week next';
+}
+
+.calendar-control-prev{
+    grid-area: prev;
+}
+
+.calendar-control-next{
+    grid-area: next;
+}
+
+.calendar-controls .calendar-control-month{
+    grid-area: month;
+}
+
+.calendar-controls .calendar-control-year{
+    grid-area: year;
+}
+
+.calendar-controls .calendar-control-week{
+    grid-area: week;
+}
+
+.calendar-chooser{
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 10;
+}
+
+
+@media all and (min-width: 768px){
+    .calendar-indicator{
+        position: relative;
+    }
+
+    .calendar-controls .calendar-chooser{
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 100%; 
+        margin: 2px 0 0;
+    }
+
+    .calendar-controls .calendar-control-month .calendar-chooser{
+        left: auto;
+        right: 0;
+    }
+
+    .control-year .calendar-chooser{
+        left: calc(50% - 54px);
+    }
+}
+
+/** typography **/
+.calendar-controls div span{
+    font-size: larger;
+    font-weight:bold;
+    text-align: center;
+    padding: 1em 1em;
+}
+
+.calendar-control-prev span::before{
+    content: var(--prev-content, "<<");
+}
+
+.calendar-control-next{
+    text-align: right;
+}
+
+.calendar-control-next span::after{
+    content: var(--next-content, ">>");
+}
+
+.calendar-controls .calendar-indicator span{
+    padding: 0 1em;
+}
+
+.control-month .calendar-control-month, .control-week .calendar-control-month{
+    text-align: right;
+}
+
+.control-year .calendar-control-year,
+.control-week .calendar-control-week{
+    text-align: center;
+}
+
+.calendar-chooser{
+    font-weight: bold;
+    padding: 1em;
+    text-align: left;
+}
+
+.calendar-control-month .calendar-chooser::before{
+    content: var(--chooser-month-text, "Chooser a Month");
+}
+
+.calendar-control-year .calendar-chooser::before{
+    content: var(--chooser-year-text, "Choose a Year");
+}
+
+.calendar-chooser ul{
+    list-style: none;
+    margin: 5px auto;
+    padding: 0;
+    text-align: left;
+}
+
+.calendar-chooser li{
+    font-weight: bold;
+    margin: 2px;
+    padding: .5em 1em;
+}
+
+
+@media all and (min-width: 768px){
+
+    .calendar-controls li{
+        padding: .5em 1em;
+    }
+
+}
+
+/** cursors and actions **/
+.calendar-controls .disabled{
+    opacity: 0.0;
+}
+
+.calendar-indicator.expanded .calendar-chooser{
+    display: inline-block;
+}
+
+.calendar-control-prev:hover, 
+.calendar-control-next:hover,
+.calendar-controls .calendar-indicator span:hover,
+.calendar-controls li{
+    cursor: pointer;
+}
+
+
+/** colors and borders **/
+.calendar-control-prev:hover,
+.calendar-control-next:hover,
+.calendar-controls .calendar-indicator span:hover,
+.calendar-controls li:hover{
+    background: var(--hover-background, #ececec);
+    border-radius: 2px;
+}
+
+.calendar-chooser{
+    background-color: var(--chooser-background, #ffffff);
+}
+
+@media all and (min-width: 768px){
+
+    .calendar-controls .calendar-chooser{
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    }
+
+}
+

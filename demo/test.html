@@ -1,0 +1,20 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div id="a" style="width: 20px; border: 1px solid red;"><span id="b">thisissometextthatshouldbelongerthatthecontainer</span></div>
+        <script>
+setTimeout(function(){
+let a = document.getElementById("a"), b = document.getElementById("b");
+console.log(a.offsetWidth);
+console.log(b.offsetWidth);
+    b.textContent = "Be";
+console.log(a.offsetWidth);
+console.log(b.offsetWidth);
+
+}, 5000);
+        
+        </script>
+    </body>
+</html>

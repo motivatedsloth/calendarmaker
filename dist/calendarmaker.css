@@ -1,0 +1,323 @@
+.calendar-controls{
+    --hover-background: #ececec;
+    --chooser-background: #ffffff;
+    --chooser-month-text: "Choose a Month";
+    --chooser-year-text: "Choose a Year";
+    --prev-content: "<<";
+    --next-content: ">>";
+}
+
+.calendar-display{
+    --date-background: lightgray;
+    --today-background: lightgray;
+    --date-color: black;
+    --today-color: black;
+    --day-block-height: 5em;
+    --week-block-height: 15em;
+    --day-block-border: 1px solid lightgray;
+    --today-block-border: 1px solid black;
+    --month-block-border: none;
+}
+
+/**
+ * controller for calendars
+ *
+ * TOC 
+ * layout
+ * typography
+ * cursors and actions
+ * colors and borders
+ *
+ */
+/* layout */
+.calendar-controls{
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr min-content;
+    margin-bottom: .5em;
+}
+
+.control-month, .control-week{
+    grid-template-areas: 'prev month year next';
+}
+
+.control-year{
+    grid-template-areas: 'prev year year next';
+}
+
+.control-week{
+    grid-template-areas: 'prev week week next';
+}
+
+.calendar-control-prev{
+    grid-area: prev;
+}
+
+.calendar-control-next{
+    grid-area: next;
+}
+
+.calendar-controls .calendar-control-month{
+    grid-area: month;
+}
+
+.calendar-controls .calendar-control-year{
+    grid-area: year;
+}
+
+.calendar-controls .calendar-control-week{
+    grid-area: week;
+}
+
+.calendar-chooser{
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 10;
+}
+
+
+@media all and (min-width: 768px){
+    .calendar-indicator{
+        position: relative;
+    }
+
+    .calendar-controls .calendar-chooser{
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 100%; 
+        margin: 2px 0 0;
+    }
+
+    .calendar-controls .calendar-control-month .calendar-chooser{
+        left: auto;
+        right: 0;
+    }
+
+    .control-year .calendar-chooser{
+        left: calc(50% - 54px);
+    }
+}
+
+/** typography **/
+.calendar-controls div span{
+    font-size: larger;
+    font-weight:bold;
+    text-align: center;
+    padding: 1em 1em;
+}
+
+.calendar-control-prev span::before{
+    content: var(--prev-content, "<<");
+}
+
+.calendar-control-next{
+    text-align: right;
+}
+
+.calendar-control-next span::after{
+    content: var(--next-content, ">>");
+}
+
+.calendar-controls .calendar-indicator span{
+    padding: 0 1em;
+}
+
+.control-month .calendar-control-month, .control-week .calendar-control-month{
+    text-align: right;
+}
+
+.control-year .calendar-control-year,
+.control-week .calendar-control-week{
+    text-align: center;
+}
+
+.calendar-chooser{
+    font-weight: bold;
+    padding: 1em;
+    text-align: left;
+}
+
+.calendar-control-month .calendar-chooser::before{
+    content: var(--chooser-month-text, "Chooser a Month");
+}
+
+.calendar-control-year .calendar-chooser::before{
+    content: var(--chooser-year-text, "Choose a Year");
+}
+
+.calendar-chooser ul{
+    list-style: none;
+    margin: 5px auto;
+    padding: 0;
+    text-align: left;
+}
+
+.calendar-chooser li{
+    font-weight: bold;
+    margin: 2px;
+    padding: .5em 1em;
+}
+
+
+@media all and (min-width: 768px){
+
+    .calendar-controls li{
+        padding: .5em 1em;
+    }
+
+}
+
+/** cursors and actions **/
+.calendar-controls .disabled{
+    opacity: 0.0;
+}
+
+.calendar-indicator.expanded .calendar-chooser{
+    display: inline-block;
+}
+
+.calendar-control-prev:hover, 
+.calendar-control-next:hover,
+.calendar-controls .calendar-indicator span:hover,
+.calendar-controls li{
+    cursor: pointer;
+}
+
+
+/** colors and borders **/
+.calendar-control-prev:hover,
+.calendar-control-next:hover,
+.calendar-controls .calendar-indicator span:hover,
+.calendar-controls li:hover{
+    background: var(--hover-background, #ececec);
+    border-radius: 2px;
+}
+
+.calendar-chooser{
+    background-color: var(--chooser-background, #ffffff);
+}
+
+@media all and (min-width: 768px){
+
+    .calendar-controls .calendar-chooser{
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    }
+
+}
+
+
+/** 
+ * calendar display
+ *
+ * TOC 
+ * layout
+ * typography
+ * colors and borders
+ */
+
+/** layout **/
+.calendar-display .calendar-month .calendar-header, 
+.calendar-display .calendar-month-content,
+.calendar-display .calendar-week-content{   
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+}
+
+.calendar-display .calendar-year-content{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.calendar-year-content .calendar-month{
+    margin: .5em;
+}
+
+.calendar-agenda{
+    max-width: 25em;
+}
+
+.calendar-month-content .calendar-day{
+    min-height: var(--day-block-height, 5em);
+}
+
+.calendar-week-content .calendar-day{
+    min-height: var(--week-block-height, 15em);
+}
+
+.calendar-year-content .calendar-month-content .calendar-day,
+.calendar-agenda-content .calendar-day{
+    min-height: 3em;
+}
+
+/** typography **/
+.long{
+    display: none;
+}
+
+.calendar-weekday{
+    text-align: center;
+}
+
+.calendar-date{
+    padding-right: .5em;
+    text-align: right;
+}
+
+.calendar-year .calendar-date{
+    padding: 0 .1em;
+}
+
+.calendar-month-name{
+    text-align: center;
+}
+
+@media all and (min-width: 768px){
+    .short{
+        display: none;
+    }
+
+    .long{
+        display: inline;
+    }
+}
+
+/** colors and borders **/
+.calendar-day-filler{
+    opacity: .5;
+}
+
+.calendar-day{
+    border: var(--day-block-border, 1px solid lightgray);
+}
+
+.calendar-date{
+    background: var(--date-background, lightgray);
+    color: var(--date-color, black);
+}
+
+.calendar-day.today .calendar-date{
+    background: var(--today-background, lightgray);
+    color: var(--today-color, black);
+}
+
+.calendar-day.today{
+    border: var(--today-block-border, 1px solid black);
+}
+
+.calendar-year .calendar-month{
+    border: var(--month-block-border, 1px solid lightgray);
+}
+
+
+/*
+(c) 2013-2019 Constellation Web Services, LLC
+*/
+
+

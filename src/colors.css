@@ -1,0 +1,20 @@
+.calendar-controls{
+    --hover-background: #ececec;
+    --chooser-background: #ffffff;
+    --chooser-month-text: "Choose a Month";
+    --chooser-year-text: "Choose a Year";
+    --prev-content: "<<";
+    --next-content: ">>";
+}
+
+.calendar-display{
+    --date-background: lightgray;
+    --today-background: lightgray;
+    --date-color: black;
+    --today-color: black;
+    --day-block-height: 5em;
+    --week-block-height: 15em;
+    --day-block-border: 1px solid lightgray;
+    --today-block-border: 1px solid black;
+    --month-block-border: none;
+}
