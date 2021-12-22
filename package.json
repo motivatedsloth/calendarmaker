@@ -1,6 +1,6 @@
 {
   "name": "@motivatedsloth/calendarmaker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple calendars",
   "main": "src/calendarmaker.js",
   "author": "Alan Buss <al@constellationwebservices.com>",
