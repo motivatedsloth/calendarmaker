@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../src/calendarmaker.css" type="text/css">
+    </head>
+    <body>
+        <h1>CalendarMaker</h1>
+        <p>
+            An easy way to work with calendars.
+        </p>
+        <h2>Months</h2>
+        <p>
+            To create the current month.
+            <pre>
+calendarmaker.month("#thismonth");
+            </pre>
+        </p>
+        <div id="thismonth"></div>
+        <h2>Years</h2>
+        <p>
+            To create the current year.
+            <pre>
+calendarmaker.year("#thisyear");
+            </pre>
+        </p>
+        <div id="thisyear"></div>
+        <h2>Weeks</h2>
+        <p>
+            To create the current week.
+            <pre>
+calendarmaker.week("#thisweek");
+            </pre>
+        </p>
+        <div id="thisweek"></div>
+        <h2>Agenda Views</h2>
+        <p>
+            To create an agenda view.
+            <pre>
+calendarmaker.agenda("#thisagenda");
+            </pre>
+        </p>
+        <div id="thisagenda"></div>
+        <script type="module" src="cal.js"> 
+        </script>
+    </body>
+</html>
