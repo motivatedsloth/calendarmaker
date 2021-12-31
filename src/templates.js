@@ -3,7 +3,7 @@ export default {
     month: {
         day: '`<div class="calendar-date"><span class="calendar-date-number">${"date"}</span></div>${"content"}`',
         weekday: '`<div class="calendar-weekday"><span class="short">${"shortday"}</span><span class="long">${"longday"}</span></div>`',
-        fillerday: '`${"day"}`',
+        fillerday: '`<div class="calendar-date"><span class="calendar-date-number">${"date"}</span></div>${"content"}`',
         header: '`<div class="calendar-header">${"weekdays"}</div>`',
         display: '`${"header"}${"content"}`'
     },
