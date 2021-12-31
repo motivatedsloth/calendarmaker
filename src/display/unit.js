@@ -42,10 +42,16 @@ export default class Unit extends Date{
         if(!this.content){
             throw 'cannot add, template does not include a {"content"} block';
         }
+        this.container.classList.remove("calendar-day-empty");
         return this.content.appendChild(el);
     }
 
     remove(el){
+        let ret;
+        ret = this.content.removeChild(el);
+        if(0 == ret.length){
+            this.container.classList.add("calendar-day-empty");
+        }
         return this.content.removeChild(el);
     }
 }
